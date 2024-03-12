@@ -1,7 +1,10 @@
-import snapshot from '@snapshot-labs/strategies';
+// import snapshot from '@snapshot-labs/strategies';
+// import snapshot from 'strategy-test';
 import redis from './redis';
 import { sha256, getCurrentBlockNum } from './utils';
 import disabled from './disabled.json';
+import utilsStrategy from './utilsStrategy';
+import validations from './validations';
 
 interface GetVpRequestParams {
   address: string;
@@ -57,7 +60,7 @@ export async function getVp(params: GetVpRequestParams) {
   if (['1319'].includes(params.network) || disabled.includes(params.space))
     throw 'something wrong with the strategies';
 
-  const result = await snapshot.utils.getVp(
+  const result = await utilsStrategy.getVp(
     params.address,
     params.network,
     params.strategies,
@@ -84,9 +87,9 @@ export async function getVp(params: GetVpRequestParams) {
 export async function validate(params: ValidateRequestParams) {
   if (!params.validation || params.validation === 'any') return true;
 
-  if (!snapshot.validations[params.validation]) throw 'Validation not found';
+  if (!validations[params.validation]) throw 'Validation not found';
 
-  const validation = new snapshot.validations[params.validation].validation(
+  const validation = new validations[params.validation].validation(
     params.author,
     params.space,
     params.network,

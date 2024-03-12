@@ -1,6 +1,9 @@
-import snapshot from '@snapshot-labs/strategies';
+// import snapshot from '@snapshot-labs/strategies';
+// import snapshot from 'strategy-test';
+
 import { createHash } from 'crypto';
 import { MAX_STRATEGIES } from './constants';
+import utilsStrategy from './utilsStrategy';
 
 const broviderUrl = process.env.BROVIDER_URL || 'https://rpc.snapshot.org';
 
@@ -67,7 +70,7 @@ export async function getCurrentBlockNum(snapshotBlock, network) {
   if (blockNumByNetwork[network] && blockNumByNetworkTs[network] > ts - delay)
     return blockNumByNetwork[network];
 
-  const provider = snapshot.utils.getProvider(network, { broviderUrl });
+  const provider = utilsStrategy.getProvider(network);
   const blockNum = await provider.getBlockNumber();
 
   blockNumByNetwork[network] = blockNum;

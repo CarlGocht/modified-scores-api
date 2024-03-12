@@ -22,7 +22,7 @@
     "@snapshot-labs/keycard": "0.5.1",
     "@snapshot-labs/snapshot-metrics": "^1.4.1",
     "@snapshot-labs/snapshot-sentry": "^1.5.5",
-    "@snapshot-labs/strategies": "https://github.com/snapshot-labs/snapshot-strategies#master",
+    "@snapshot-labs/strategies": "https://github.com/sudheerDev/snapshot-strategies",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
@@ -35,7 +35,6 @@
   },
   "lint-staged": {
     "*.{js,ts,json}": [
-      "yarn lint:fix"
     ]
   },
   "devDependencies": {
